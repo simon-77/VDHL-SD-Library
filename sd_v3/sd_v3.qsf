@@ -1,0 +1,214 @@
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# A VHDL-Library for reading SD-Cards with a FPGA inside a small test project.
+# Copyright (C) 2017  Simon Aster
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+############################################################
+# Project:	sd_v3
+# File:			sd_v3.qsf
+# Author:		Simon Aster
+# Created:	2017-05-19
+# Modified:	2017-05-19
+# Version:	1
+############################################################
+# Assignments for SD-Shield
+############################################################
+
+# General info
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE22F17C6
+set_global_assignment -name TOP_LEVEL_ENTITY sd_v3
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.0.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:58:08  DECEMBER 15, 2016"
+set_global_assignment -name LAST_QUARTUS_VERSION 16.0.1
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 4
+############################################################
+# Files in project
+set_global_assignment -name SDC_FILE "source/de0_nano/SynopsysDesignConstrains_DE0-Nano.sdc"
+set_global_assignment -name CDF_FILE output_files/chain_sof.cdf
+set_global_assignment -name CDF_FILE output_files/chain_jic.cdf
+# VHDL Files
+set_global_assignment -name VHDL_FILE source/sd_v3.vhd
+set_global_assignment -name VHDL_FILE source/de0_nano/de0_nano_const_pkg.vhd
+# 15 lines ===================
+# vhdl_lib
+set_global_assignment -name VHDL_FILE source/vhdl_lib/count_bin.vhd
+set_global_assignment -name VHDL_FILE source/vhdl_lib/count_int.vhd
+set_global_assignment -name VHDL_FILE source/vhdl_lib/debounce.vhd
+set_global_assignment -name VHDL_FILE source/vhdl_lib/ff_rs.vhd
+set_global_assignment -name VHDL_FILE source/vhdl_lib/one_shot.vhd
+set_global_assignment -name VHDL_FILE source/vhdl_lib/prescaler.vhd
+set_global_assignment -name VHDL_FILE source/vhdl_lib/pwm_unit.vhd
+set_global_assignment -name VHDL_FILE source/vhdl_lib/reset_unit.vhd
+set_global_assignment -name VHDL_FILE source/vhdl_lib/rotary.vhd
+set_global_assignment -name VHDL_FILE source/vhdl_lib/sweep_unit.vhd
+set_global_assignment -name VHDL_FILE source/vhdl_lib/tick_extend.vhd
+set_global_assignment -name VHDL_FILE source/vhdl_lib/toggle_unit.vhd
+set_global_assignment -name VHDL_FILE source/vhdl_lib/vhdl_lib_pkg.vhd
+#=============================
+# SD-Card
+set_global_assignment -name VHDL_FILE source/sd/crc.vhd
+set_global_assignment -name VHDL_FILE source/sd/sd_const_pkg.vhd
+set_global_assignment -name VHDL_FILE source/sd/sd_controller.vhd
+set_global_assignment -name VHDL_FILE source/sd/sd_pkg.vhd
+set_global_assignment -name VHDL_FILE source/sd/sd_transceiver.vhd
+set_global_assignment -name VHDL_FILE source/sd/simple_sd.vhd
+############################################################
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+
+############################################################
+# Assignments
+############################################################
+
+# Pin & Location Assignments
+# ==========================
+#============================================================
+# CLOCK
+#============================================================
+set_location_assignment PIN_R8 -to CLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLK
+
+# 22 lines
+# LEDs can be used for debuging purpose
+#============================================================
+# LED
+#============================================================
+set_location_assignment PIN_A15 -to LED[0]
+set_location_assignment PIN_A13 -to LED[1]
+set_location_assignment PIN_B13 -to LED[2]
+set_location_assignment PIN_A11 -to LED[3]
+set_location_assignment PIN_D1 -to LED[4]
+set_location_assignment PIN_F3 -to LED[5]
+set_location_assignment PIN_B1 -to LED[6]
+set_location_assignment PIN_L3 -to LED[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[7]
+
+# 10 lines
+# Keys can be used for debuging purpose
+#============================================================
+# KEY
+#============================================================
+set_location_assignment PIN_J15 -to KEY[0]
+set_location_assignment PIN_E1 -to KEY[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[1]
+
+# 14 lines
+# Switches can be used for debuging purpose
+#============================================================
+# SW
+#============================================================
+set_location_assignment PIN_M1 -to SW[0]
+set_location_assignment PIN_T8 -to SW[1]
+set_location_assignment PIN_B9 -to SW[2]
+set_location_assignment PIN_M15 -to SW[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[3]
+
+
+#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+# Start costum pin assignments
+
+#============================================================
+# GPIO_0 connect to SD-Card Shield
+#============================================================
+set_location_assignment PIN_D3 -to LEDR[0] #GPIO_0[0]
+set_location_assignment PIN_C3 -to LEDR[1] #GPIO_0[1]
+set_location_assignment PIN_B3 -to LEDR[2] #GPIO_0[4]
+set_location_assignment PIN_A4 -to LEDR[3] #GPIO_0[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[3]
+
+set_location_assignment PIN_B12 -to PB[0] #GPIO_0[33]
+set_location_assignment PIN_D11 -to PB[1] #GPIO_0[31]
+set_location_assignment PIN_B11 -to PB[2] #GPIO_0[29]
+set_location_assignment PIN_E10 -to PB[3] #GPIO_0[27]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PB[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PB[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PB[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PB[3]
+
+set_location_assignment PIN_F9 -to LEDG[0] #GPIO_0[22]
+set_location_assignment PIN_E8 -to LEDG[1] #GPIO_0[20]
+set_location_assignment PIN_E7 -to LEDG[2] #GPIO_0[18]
+set_location_assignment PIN_C8 -to LEDG[3] #GPIO_0[16]
+set_location_assignment PIN_A7 -to LEDG[4] #GPIO_0[14]
+set_location_assignment PIN_B7 -to LEDG[5] #GPIO_0[12]
+set_location_assignment PIN_B6 -to LEDG[6] #GPIO_0[10]
+set_location_assignment PIN_A5 -to LEDG[7] #GPIO_0[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDG[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDG[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDG[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDG[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDG[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDG[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDG[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDG[7]
+
+set_location_assignment PIN_D5 -to SD_CLK			#GPIO_0[9]
+set_location_assignment PIN_B5 -to SD_CMD			#GPIO_0[7]
+set_location_assignment PIN_A6 -to SD_DAT[0]	#GPIO_0[11]
+set_location_assignment PIN_D6 -to SD_DAT[1]	#GPIO_0[13]
+set_location_assignment PIN_A3 -to SD_DAT[2]	#GPIO_0[3]
+set_location_assignment PIN_B4 -to SD_DAT[3]	#GPIO_0[5]
+set_location_assignment PIN_D8 -to SD_CD			#GPIO_0[19]
+set_location_assignment PIN_F8 -to SD_WP			#GPIO_0[21]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_CLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_CMD
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_CD
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_WP
+
+# End costum pin assignments
+#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+#############################################################################
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+
+set_global_assignment -name RESERVE_DCLK_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name CYCLONEII_RESERVE_NCEO_AFTER_CONFIGURATION "USE AS REGULAR IO"
+
+set_instance_assignment -name FAST_INPUT_REGISTER ON -to *
+set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to *
+set_instance_assignment -name TSU_REQUIREMENT "10 ns" -from * -to *
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to *
+
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+#############################################################################

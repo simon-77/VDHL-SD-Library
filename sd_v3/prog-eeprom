@@ -1,0 +1,3 @@
+#!/bin/sh
+/opt/intelFPGA_lite/17.0/quartus/bin/quartus_cpf -c output_files/conversion_setup.cof && 
+/opt/intelFPGA_lite/17.0/quartus/bin/quartus_pgm output_files/chain_jic.cdf 

@@ -1,0 +1,1078 @@
+Analysis & Synthesis report for sd_v3
+Fri Aug 11 11:01:47 2017
+Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |sd_v3|simple_sd:u_simple_sd|cd_state
+  9. State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|read_status_state
+ 10. State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|read_multiple_state
+ 11. State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|read_single_state
+ 12. State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|init_state
+ 13. State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_state_dly
+ 14. State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_state
+ 15. State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|unit_state_dly
+ 16. State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|unit_state
+ 17. State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|\p_sd_controller:prev_cmd_type
+ 18. State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|\p_sd_controller:prev_unit_state
+ 19. State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|dat_state_dly
+ 20. State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|dat_state
+ 21. State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|cmd_reg.resp
+ 22. State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|resp.resp
+ 23. State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|state
+ 24. Registers Removed During Synthesis
+ 25. General Register Statistics
+ 26. Inverted Register Statistics
+ 27. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 28. Parameter Settings for User Entity Instance: reset_unit:power_on_reset
+ 29. Parameter Settings for User Entity Instance: debounce:\debounce_pbs:0:debounce_pbs_i
+ 30. Parameter Settings for User Entity Instance: debounce:\debounce_pbs:1:debounce_pbs_i
+ 31. Parameter Settings for User Entity Instance: debounce:\debounce_pbs:2:debounce_pbs_i
+ 32. Parameter Settings for User Entity Instance: debounce:\debounce_pbs:3:debounce_pbs_i
+ 33. Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:u_cmd_crc7
+ 34. Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:0:crc16_dat_i
+ 35. Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:1:crc16_dat_i
+ 36. Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:2:crc16_dat_i
+ 37. Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:3:crc16_dat_i
+ 38. Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|prescaler:u_clk_en_init2
+ 39. Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|prescaler:u_clk_en_init
+ 40. Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|debounce:cd_debounce
+ 41. Parameter Settings for User Entity Instance: count_bin:add_count
+ 42. Port Connectivity Checks: "count_bin:add_count"
+ 43. Port Connectivity Checks: "simple_sd:u_simple_sd|debounce:cd_debounce"
+ 44. Port Connectivity Checks: "simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|prescaler:u_clk_en_init2"
+ 45. Port Connectivity Checks: "simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver"
+ 46. Port Connectivity Checks: "simple_sd:u_simple_sd|sd_controller:u_sd_controller"
+ 47. Port Connectivity Checks: "simple_sd:u_simple_sd"
+ 48. Port Connectivity Checks: "debounce:\debounce_pbs:3:debounce_pbs_i"
+ 49. Port Connectivity Checks: "debounce:\debounce_pbs:2:debounce_pbs_i"
+ 50. Port Connectivity Checks: "debounce:\debounce_pbs:1:debounce_pbs_i"
+ 51. Port Connectivity Checks: "debounce:\debounce_pbs:0:debounce_pbs_i"
+ 52. Post-Synthesis Netlist Statistics for Top Partition
+ 53. Elapsed Time Per Partition
+ 54. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Fri Aug 11 11:01:47 2017       ;
+; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
+; Revision Name                      ; sd_v3                                       ;
+; Top-level Entity Name              ; sd_v3                                       ;
+; Family                             ; Cyclone IV E                                ;
+; Total logic elements               ; 1,132                                       ;
+;     Total combinational functions  ; 1,103                                       ;
+;     Dedicated logic registers      ; 666                                         ;
+; Total registers                    ; 666                                         ;
+; Total pins                         ; 39                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE22F17C6       ;                    ;
+; Top-level entity name                                                      ; sd_v3              ; sd_v3              ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone V          ;
+; Maximum processors allowed for parallel compilation                        ; 4                  ;                    ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; OpenCore Plus hardware evaluation                                          ; Enable             ; Enable             ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processor 3            ;   0.0%      ;
+;     Processor 4            ;   0.0%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                          ;
++----------------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path       ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                             ; Library ;
++----------------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------+---------+
+; source/sd_v3.vhd                       ; yes             ; User VHDL File  ; /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd                       ;         ;
+; source/de0_nano/de0_nano_const_pkg.vhd ; yes             ; User VHDL File  ; /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/de0_nano/de0_nano_const_pkg.vhd ;         ;
+; source/vhdl_lib/count_bin.vhd          ; yes             ; User VHDL File  ; /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/count_bin.vhd          ;         ;
+; source/vhdl_lib/debounce.vhd           ; yes             ; User VHDL File  ; /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/debounce.vhd           ;         ;
+; source/vhdl_lib/one_shot.vhd           ; yes             ; User VHDL File  ; /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/one_shot.vhd           ;         ;
+; source/vhdl_lib/prescaler.vhd          ; yes             ; User VHDL File  ; /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/prescaler.vhd          ;         ;
+; source/vhdl_lib/reset_unit.vhd         ; yes             ; User VHDL File  ; /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/reset_unit.vhd         ;         ;
+; source/vhdl_lib/tick_extend.vhd        ; yes             ; User VHDL File  ; /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/tick_extend.vhd        ;         ;
+; source/sd/crc.vhd                      ; yes             ; User VHDL File  ; /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/crc.vhd                      ;         ;
+; source/sd/sd_const_pkg.vhd             ; yes             ; User VHDL File  ; /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_const_pkg.vhd             ;         ;
+; source/sd/sd_controller.vhd            ; yes             ; User VHDL File  ; /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_controller.vhd            ;         ;
+; source/sd/sd_transceiver.vhd           ; yes             ; User VHDL File  ; /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_transceiver.vhd           ;         ;
+; source/sd/simple_sd.vhd                ; yes             ; User VHDL File  ; /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/simple_sd.vhd                ;         ;
++----------------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimated Total logic elements              ; 1,132     ;
+;                                             ;           ;
+; Total combinational functions               ; 1103      ;
+; Logic element usage by number of LUT inputs ;           ;
+;     -- 4 input functions                    ; 513       ;
+;     -- 3 input functions                    ; 255       ;
+;     -- <=2 input functions                  ; 335       ;
+;                                             ;           ;
+; Logic elements by mode                      ;           ;
+;     -- normal mode                          ; 929       ;
+;     -- arithmetic mode                      ; 174       ;
+;                                             ;           ;
+; Total registers                             ; 666       ;
+;     -- Dedicated logic registers            ; 666       ;
+;     -- I/O registers                        ; 0         ;
+;                                             ;           ;
+; I/O pins                                    ; 39        ;
+;                                             ;           ;
+; Embedded Multiplier 9-bit elements          ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 667       ;
+; Total fan-out                               ; 6243      ;
+; Average fan-out                             ; 3.37      ;
++---------------------------------------------+-----------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                           ;
++----------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------+----------------+--------------+
+; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                 ; Entity Name    ; Library Name ;
++----------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------+----------------+--------------+
+; |sd_v3                                       ; 1103 (1)            ; 666 (9)                   ; 0           ; 0            ; 0       ; 0         ; 39   ; 0            ; |sd_v3                                                                                                              ; sd_v3          ; work         ;
+;    |count_bin:add_count|                     ; 32 (32)             ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|count_bin:add_count                                                                                          ; count_bin      ; work         ;
+;    |debounce:\debounce_pbs:1:debounce_pbs_i| ; 33 (33)             ; 18 (18)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|debounce:\debounce_pbs:1:debounce_pbs_i                                                                      ; debounce       ; work         ;
+;    |debounce:\debounce_pbs:2:debounce_pbs_i| ; 33 (33)             ; 18 (18)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|debounce:\debounce_pbs:2:debounce_pbs_i                                                                      ; debounce       ; work         ;
+;    |debounce:\debounce_pbs:3:debounce_pbs_i| ; 33 (33)             ; 18 (18)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|debounce:\debounce_pbs:3:debounce_pbs_i                                                                      ; debounce       ; work         ;
+;    |reset_unit:power_on_reset|               ; 32 (32)             ; 23 (23)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|reset_unit:power_on_reset                                                                                    ; reset_unit     ; work         ;
+;    |simple_sd:u_simple_sd|                   ; 939 (7)             ; 548 (4)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd                                                                                        ; simple_sd      ; work         ;
+;       |debounce:cd_debounce|                 ; 33 (33)             ; 18 (18)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd|debounce:cd_debounce                                                                   ; debounce       ; work         ;
+;       |one_shot:dat_one_shot|                ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd|one_shot:dat_one_shot                                                                  ; one_shot       ; work         ;
+;       |sd_controller:u_sd_controller|        ; 894 (298)           ; 521 (116)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller                                                          ; sd_controller  ; work         ;
+;          |sd_transceiver:u_sd_transceiver|   ; 596 (507)           ; 405 (327)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver                          ; sd_transceiver ; work         ;
+;             |crc:\crc16:0:crc16_dat_i|       ; 17 (17)             ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:0:crc16_dat_i ; crc            ; work         ;
+;             |crc:\crc16:1:crc16_dat_i|       ; 16 (16)             ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:1:crc16_dat_i ; crc            ; work         ;
+;             |crc:\crc16:2:crc16_dat_i|       ; 16 (16)             ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:2:crc16_dat_i ; crc            ; work         ;
+;             |crc:\crc16:3:crc16_dat_i|       ; 16 (16)             ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:3:crc16_dat_i ; crc            ; work         ;
+;             |crc:u_cmd_crc7|                 ; 10 (10)             ; 7 (7)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:u_cmd_crc7           ; crc            ; work         ;
+;             |prescaler:u_clk_en_init2|       ; 13 (13)             ; 6 (6)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|prescaler:u_clk_en_init2 ; prescaler      ; work         ;
+;             |prescaler:u_clk_en_init|        ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|prescaler:u_clk_en_init  ; prescaler      ; work         ;
+;       |tick_extend:ctrl_tick_extend_1|       ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd|tick_extend:ctrl_tick_extend_1                                                         ; tick_extend    ; work         ;
+;       |tick_extend:ctrl_tick_extend_2|       ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd|tick_extend:ctrl_tick_extend_2                                                         ; tick_extend    ; work         ;
+;       |tick_extend:ctrl_tick_extend_3|       ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd|tick_extend:ctrl_tick_extend_3                                                         ; tick_extend    ; work         ;
+;       |tick_extend:ctrl_tick_extend_4|       ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sd_v3|simple_sd:u_simple_sd|tick_extend:ctrl_tick_extend_4                                                         ; tick_extend    ; work         ;
++----------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------+----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|cd_state                                                 ;
++---------------------+-------------------+--------------------+---------------------+------------------+
+; Name                ; cd_state.s_reinit ; cd_state.s_ejected ; cd_state.s_inserted ; cd_state.s_reset ;
++---------------------+-------------------+--------------------+---------------------+------------------+
+; cd_state.s_reset    ; 0                 ; 0                  ; 0                   ; 0                ;
+; cd_state.s_inserted ; 0                 ; 0                  ; 1                   ; 1                ;
+; cd_state.s_ejected  ; 0                 ; 1                  ; 0                   ; 1                ;
+; cd_state.s_reinit   ; 1                 ; 0                  ; 0                   ; 1                ;
++---------------------+-------------------+--------------------+---------------------+------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|read_status_state              ;
++--------------------------+--------------------------+--------------------------+--------------------------+
+; Name                     ; read_status_state.s_read ; read_status_state.s_tick ; read_status_state.s_idle ;
++--------------------------+--------------------------+--------------------------+--------------------------+
+; read_status_state.s_idle ; 0                        ; 0                        ; 0                        ;
+; read_status_state.s_tick ; 0                        ; 1                        ; 1                        ;
+; read_status_state.s_read ; 1                        ; 0                        ; 1                        ;
++--------------------------+--------------------------+--------------------------+--------------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|read_multiple_state                                                ;
++----------------------------+----------------------------+----------------------------+---------------------------+----------------------------+
+; Name                       ; read_multiple_state.s_stop ; read_multiple_state.s_read ; read_multiple_state.s_cmd ; read_multiple_state.s_idle ;
++----------------------------+----------------------------+----------------------------+---------------------------+----------------------------+
+; read_multiple_state.s_idle ; 0                          ; 0                          ; 0                         ; 0                          ;
+; read_multiple_state.s_cmd  ; 0                          ; 0                          ; 1                         ; 1                          ;
+; read_multiple_state.s_read ; 0                          ; 1                          ; 0                         ; 1                          ;
+; read_multiple_state.s_stop ; 1                          ; 0                          ; 0                         ; 1                          ;
++----------------------------+----------------------------+----------------------------+---------------------------+----------------------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|read_single_state                                        ;
++--------------------------+--------------------------+--------------------------+-------------------------+--------------------------+
+; Name                     ; read_single_state.s_read ; read_single_state.s_tick ; read_single_state.s_cmd ; read_single_state.s_idle ;
++--------------------------+--------------------------+--------------------------+-------------------------+--------------------------+
+; read_single_state.s_idle ; 0                        ; 0                        ; 0                       ; 0                        ;
+; read_single_state.s_cmd  ; 0                        ; 0                        ; 1                       ; 1                        ;
+; read_single_state.s_tick ; 0                        ; 1                        ; 0                       ; 1                        ;
+; read_single_state.s_read ; 1                        ; 0                        ; 0                       ; 1                        ;
++--------------------------+--------------------------+--------------------------+-------------------------+--------------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|init_state                                                                                                                                                                                                                                                                                                                                                                            ;
++----------------------------+---------------------+---------------------------+----------------------------+-------------------+--------------------------+--------------------+--------------------+------------------------+---------------------+-------------------+------------------+-------------------+-------------------+---------------------+------------------+-------------------+-------------------+--------------------------+-------------------+
+; Name                       ; init_state.s_finish ; init_state.s_switch_delay ; init_state.s_switch_status ; init_state.s_cmd6 ; init_state.s_switch_func ; init_state.s_speed ; init_state.s_acmd6 ; init_state.s_bus_width ; init_state.s_acmd42 ; init_state.s_cmd7 ; init_state.s_rca ; init_state.s_cmd3 ; init_state.s_cmd2 ; init_state.s_acmd41 ; init_state.s_hcs ; init_state.s_cmd8 ; init_state.s_cmd0 ; init_state.s_prepare_clk ; init_state.s_init ;
++----------------------------+---------------------+---------------------------+----------------------------+-------------------+--------------------------+--------------------+--------------------+------------------------+---------------------+-------------------+------------------+-------------------+-------------------+---------------------+------------------+-------------------+-------------------+--------------------------+-------------------+
+; init_state.s_init          ; 0                   ; 0                         ; 0                          ; 0                 ; 0                        ; 0                  ; 0                  ; 0                      ; 0                   ; 0                 ; 0                ; 0                 ; 0                 ; 0                   ; 0                ; 0                 ; 0                 ; 0                        ; 0                 ;
+; init_state.s_prepare_clk   ; 0                   ; 0                         ; 0                          ; 0                 ; 0                        ; 0                  ; 0                  ; 0                      ; 0                   ; 0                 ; 0                ; 0                 ; 0                 ; 0                   ; 0                ; 0                 ; 0                 ; 1                        ; 1                 ;
+; init_state.s_cmd0          ; 0                   ; 0                         ; 0                          ; 0                 ; 0                        ; 0                  ; 0                  ; 0                      ; 0                   ; 0                 ; 0                ; 0                 ; 0                 ; 0                   ; 0                ; 0                 ; 1                 ; 0                        ; 1                 ;
+; init_state.s_cmd8          ; 0                   ; 0                         ; 0                          ; 0                 ; 0                        ; 0                  ; 0                  ; 0                      ; 0                   ; 0                 ; 0                ; 0                 ; 0                 ; 0                   ; 0                ; 1                 ; 0                 ; 0                        ; 1                 ;
+; init_state.s_hcs           ; 0                   ; 0                         ; 0                          ; 0                 ; 0                        ; 0                  ; 0                  ; 0                      ; 0                   ; 0                 ; 0                ; 0                 ; 0                 ; 0                   ; 1                ; 0                 ; 0                 ; 0                        ; 1                 ;
+; init_state.s_acmd41        ; 0                   ; 0                         ; 0                          ; 0                 ; 0                        ; 0                  ; 0                  ; 0                      ; 0                   ; 0                 ; 0                ; 0                 ; 0                 ; 1                   ; 0                ; 0                 ; 0                 ; 0                        ; 1                 ;
+; init_state.s_cmd2          ; 0                   ; 0                         ; 0                          ; 0                 ; 0                        ; 0                  ; 0                  ; 0                      ; 0                   ; 0                 ; 0                ; 0                 ; 1                 ; 0                   ; 0                ; 0                 ; 0                 ; 0                        ; 1                 ;
+; init_state.s_cmd3          ; 0                   ; 0                         ; 0                          ; 0                 ; 0                        ; 0                  ; 0                  ; 0                      ; 0                   ; 0                 ; 0                ; 1                 ; 0                 ; 0                   ; 0                ; 0                 ; 0                 ; 0                        ; 1                 ;
+; init_state.s_rca           ; 0                   ; 0                         ; 0                          ; 0                 ; 0                        ; 0                  ; 0                  ; 0                      ; 0                   ; 0                 ; 1                ; 0                 ; 0                 ; 0                   ; 0                ; 0                 ; 0                 ; 0                        ; 1                 ;
+; init_state.s_cmd7          ; 0                   ; 0                         ; 0                          ; 0                 ; 0                        ; 0                  ; 0                  ; 0                      ; 0                   ; 1                 ; 0                ; 0                 ; 0                 ; 0                   ; 0                ; 0                 ; 0                 ; 0                        ; 1                 ;
+; init_state.s_acmd42        ; 0                   ; 0                         ; 0                          ; 0                 ; 0                        ; 0                  ; 0                  ; 0                      ; 1                   ; 0                 ; 0                ; 0                 ; 0                 ; 0                   ; 0                ; 0                 ; 0                 ; 0                        ; 1                 ;
+; init_state.s_bus_width     ; 0                   ; 0                         ; 0                          ; 0                 ; 0                        ; 0                  ; 0                  ; 1                      ; 0                   ; 0                 ; 0                ; 0                 ; 0                 ; 0                   ; 0                ; 0                 ; 0                 ; 0                        ; 1                 ;
+; init_state.s_acmd6         ; 0                   ; 0                         ; 0                          ; 0                 ; 0                        ; 0                  ; 1                  ; 0                      ; 0                   ; 0                 ; 0                ; 0                 ; 0                 ; 0                   ; 0                ; 0                 ; 0                 ; 0                        ; 1                 ;
+; init_state.s_speed         ; 0                   ; 0                         ; 0                          ; 0                 ; 0                        ; 1                  ; 0                  ; 0                      ; 0                   ; 0                 ; 0                ; 0                 ; 0                 ; 0                   ; 0                ; 0                 ; 0                 ; 0                        ; 1                 ;
+; init_state.s_switch_func   ; 0                   ; 0                         ; 0                          ; 0                 ; 1                        ; 0                  ; 0                  ; 0                      ; 0                   ; 0                 ; 0                ; 0                 ; 0                 ; 0                   ; 0                ; 0                 ; 0                 ; 0                        ; 1                 ;
+; init_state.s_cmd6          ; 0                   ; 0                         ; 0                          ; 1                 ; 0                        ; 0                  ; 0                  ; 0                      ; 0                   ; 0                 ; 0                ; 0                 ; 0                 ; 0                   ; 0                ; 0                 ; 0                 ; 0                        ; 1                 ;
+; init_state.s_switch_status ; 0                   ; 0                         ; 1                          ; 0                 ; 0                        ; 0                  ; 0                  ; 0                      ; 0                   ; 0                 ; 0                ; 0                 ; 0                 ; 0                   ; 0                ; 0                 ; 0                 ; 0                        ; 1                 ;
+; init_state.s_switch_delay  ; 0                   ; 1                         ; 0                          ; 0                 ; 0                        ; 0                  ; 0                  ; 0                      ; 0                   ; 0                 ; 0                ; 0                 ; 0                 ; 0                   ; 0                ; 0                 ; 0                 ; 0                        ; 1                 ;
+; init_state.s_finish        ; 1                   ; 0                         ; 0                          ; 0                 ; 0                        ; 0                  ; 0                  ; 0                      ; 0                   ; 0                 ; 0                ; 0                 ; 0                 ; 0                   ; 0                ; 0                 ; 0                 ; 0                        ; 1                 ;
++----------------------------+---------------------+---------------------------+----------------------------+-------------------+--------------------------+--------------------+--------------------+------------------------+---------------------+-------------------+------------------+-------------------+-------------------+---------------------+------------------+-------------------+-------------------+--------------------------+-------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_state_dly                                                             ;
++---------------------------+---------------------------+----------------------+--------------------------+---------------------+----------------------+
+; Name                      ; cmd_state_dly.s_acmd_wait ; cmd_state_dly.s_acmd ; cmd_state_dly.s_cmd_wait ; cmd_state_dly.s_cmd ; cmd_state_dly.s_idle ;
++---------------------------+---------------------------+----------------------+--------------------------+---------------------+----------------------+
+; cmd_state_dly.s_idle      ; 0                         ; 0                    ; 0                        ; 0                   ; 0                    ;
+; cmd_state_dly.s_cmd       ; 0                         ; 0                    ; 0                        ; 1                   ; 1                    ;
+; cmd_state_dly.s_cmd_wait  ; 0                         ; 0                    ; 1                        ; 0                   ; 1                    ;
+; cmd_state_dly.s_acmd      ; 0                         ; 1                    ; 0                        ; 0                   ; 1                    ;
+; cmd_state_dly.s_acmd_wait ; 1                         ; 0                    ; 0                        ; 0                   ; 1                    ;
++---------------------------+---------------------------+----------------------+--------------------------+---------------------+----------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_state                                         ;
++-----------------------+-----------------------+------------------+----------------------+-----------------+------------------+
+; Name                  ; cmd_state.s_acmd_wait ; cmd_state.s_acmd ; cmd_state.s_cmd_wait ; cmd_state.s_cmd ; cmd_state.s_idle ;
++-----------------------+-----------------------+------------------+----------------------+-----------------+------------------+
+; cmd_state.s_idle      ; 0                     ; 0                ; 0                    ; 0               ; 0                ;
+; cmd_state.s_cmd       ; 0                     ; 0                ; 0                    ; 1               ; 1                ;
+; cmd_state.s_cmd_wait  ; 0                     ; 0                ; 1                    ; 0               ; 1                ;
+; cmd_state.s_acmd      ; 0                     ; 1                ; 0                    ; 0               ; 1                ;
+; cmd_state.s_acmd_wait ; 1                     ; 0                ; 0                    ; 0               ; 1                ;
++-----------------------+-----------------------+------------------+----------------------+-----------------+------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|unit_state_dly                                                                                   ;
++--------------------------------+--------------------------------+------------------------------+------------------------+---------------------------+-----------------------+
+; Name                           ; unit_state_dly.s_read_multiple ; unit_state_dly.s_read_single ; unit_state_dly.s_error ; unit_state_dly.s_transfer ; unit_state_dly.s_init ;
++--------------------------------+--------------------------------+------------------------------+------------------------+---------------------------+-----------------------+
+; unit_state_dly.s_init          ; 0                              ; 0                            ; 0                      ; 0                         ; 0                     ;
+; unit_state_dly.s_transfer      ; 0                              ; 0                            ; 0                      ; 1                         ; 1                     ;
+; unit_state_dly.s_error         ; 0                              ; 0                            ; 1                      ; 0                         ; 1                     ;
+; unit_state_dly.s_read_single   ; 0                              ; 1                            ; 0                      ; 0                         ; 1                     ;
+; unit_state_dly.s_read_multiple ; 1                              ; 0                            ; 0                      ; 0                         ; 1                     ;
++--------------------------------+--------------------------------+------------------------------+------------------------+---------------------------+-----------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|unit_state                                                               ;
++----------------------------+----------------------------+--------------------------+--------------------+-----------------------+-------------------+
+; Name                       ; unit_state.s_read_multiple ; unit_state.s_read_single ; unit_state.s_error ; unit_state.s_transfer ; unit_state.s_init ;
++----------------------------+----------------------------+--------------------------+--------------------+-----------------------+-------------------+
+; unit_state.s_init          ; 0                          ; 0                        ; 0                  ; 0                     ; 0                 ;
+; unit_state.s_transfer      ; 0                          ; 0                        ; 0                  ; 1                     ; 1                 ;
+; unit_state.s_error         ; 0                          ; 0                        ; 1                  ; 0                     ; 1                 ;
+; unit_state.s_read_single   ; 0                          ; 1                        ; 0                  ; 0                     ; 1                 ;
+; unit_state.s_read_multiple ; 1                          ; 0                        ; 0                  ; 0                     ; 1                 ;
++----------------------------+----------------------------+--------------------------+--------------------+-----------------------+-------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|\p_sd_controller:prev_cmd_type                                                                                                                                                  ;
++--------------------------------------------+--------------------------------------------+---------------------------------------+-------------------------------------------+--------------------------------------+---------------------------------------+
+; Name                                       ; \p_sd_controller:prev_cmd_type.s_acmd_wait ; \p_sd_controller:prev_cmd_type.s_acmd ; \p_sd_controller:prev_cmd_type.s_cmd_wait ; \p_sd_controller:prev_cmd_type.s_cmd ; \p_sd_controller:prev_cmd_type.s_idle ;
++--------------------------------------------+--------------------------------------------+---------------------------------------+-------------------------------------------+--------------------------------------+---------------------------------------+
+; \p_sd_controller:prev_cmd_type.s_idle      ; 0                                          ; 0                                     ; 0                                         ; 0                                    ; 0                                     ;
+; \p_sd_controller:prev_cmd_type.s_cmd       ; 0                                          ; 0                                     ; 0                                         ; 1                                    ; 1                                     ;
+; \p_sd_controller:prev_cmd_type.s_cmd_wait  ; 0                                          ; 0                                     ; 1                                         ; 0                                    ; 1                                     ;
+; \p_sd_controller:prev_cmd_type.s_acmd      ; 0                                          ; 1                                     ; 0                                         ; 0                                    ; 1                                     ;
+; \p_sd_controller:prev_cmd_type.s_acmd_wait ; 1                                          ; 0                                     ; 0                                         ; 0                                    ; 1                                     ;
++--------------------------------------------+--------------------------------------------+---------------------------------------+-------------------------------------------+--------------------------------------+---------------------------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|\p_sd_controller:prev_unit_state                                                                                                                                                                             ;
++--------------------------------------------------+--------------------------------------------------+------------------------------------------------+------------------------------------------+---------------------------------------------+-----------------------------------------+
+; Name                                             ; \p_sd_controller:prev_unit_state.s_read_multiple ; \p_sd_controller:prev_unit_state.s_read_single ; \p_sd_controller:prev_unit_state.s_error ; \p_sd_controller:prev_unit_state.s_transfer ; \p_sd_controller:prev_unit_state.s_init ;
++--------------------------------------------------+--------------------------------------------------+------------------------------------------------+------------------------------------------+---------------------------------------------+-----------------------------------------+
+; \p_sd_controller:prev_unit_state.s_init          ; 0                                                ; 0                                              ; 0                                        ; 0                                           ; 0                                       ;
+; \p_sd_controller:prev_unit_state.s_transfer      ; 0                                                ; 0                                              ; 0                                        ; 1                                           ; 1                                       ;
+; \p_sd_controller:prev_unit_state.s_error         ; 0                                                ; 0                                              ; 1                                        ; 0                                           ; 1                                       ;
+; \p_sd_controller:prev_unit_state.s_read_single   ; 0                                                ; 1                                              ; 0                                        ; 0                                           ; 1                                       ;
+; \p_sd_controller:prev_unit_state.s_read_multiple ; 1                                                ; 0                                              ; 0                                        ; 0                                           ; 1                                       ;
++--------------------------------------------------+--------------------------------------------------+------------------------------------------------+------------------------------------------+---------------------------------------------+-----------------------------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|dat_state_dly ;
++----------------------+---------------------+----------------------+----------------------+-------------------------------+
+; Name                 ; dat_state_dly.s_crc ; dat_state_dly.s_read ; dat_state_dly.s_wait ; dat_state_dly.s_idle          ;
++----------------------+---------------------+----------------------+----------------------+-------------------------------+
+; dat_state_dly.s_idle ; 0                   ; 0                    ; 0                    ; 0                             ;
+; dat_state_dly.s_wait ; 0                   ; 0                    ; 1                    ; 1                             ;
+; dat_state_dly.s_read ; 0                   ; 1                    ; 0                    ; 1                             ;
+; dat_state_dly.s_crc  ; 1                   ; 0                    ; 0                    ; 1                             ;
++----------------------+---------------------+----------------------+----------------------+-------------------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|dat_state ;
++------------------+-----------------+------------------+------------------+-------------------------------------------+
+; Name             ; dat_state.s_crc ; dat_state.s_read ; dat_state.s_wait ; dat_state.s_idle                          ;
++------------------+-----------------+------------------+------------------+-------------------------------------------+
+; dat_state.s_idle ; 0               ; 0                ; 0                ; 0                                         ;
+; dat_state.s_wait ; 0               ; 0                ; 1                ; 1                                         ;
+; dat_state.s_read ; 0               ; 1                ; 0                ; 1                                         ;
+; dat_state.s_crc  ; 1               ; 0                ; 0                ; 1                                         ;
++------------------+-----------------+------------------+------------------+-------------------------------------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|cmd_reg.resp                         ;
++------------------+-----------------+-----------------+-----------------+-----------------+------------------+-----------------+-----------------+
+; Name             ; cmd_reg.resp.R7 ; cmd_reg.resp.R6 ; cmd_reg.resp.R3 ; cmd_reg.resp.R2 ; cmd_reg.resp.R1b ; cmd_reg.resp.R1 ; cmd_reg.resp.R0 ;
++------------------+-----------------+-----------------+-----------------+-----------------+------------------+-----------------+-----------------+
+; cmd_reg.resp.R0  ; 0               ; 0               ; 0               ; 0               ; 0                ; 0               ; 0               ;
+; cmd_reg.resp.R1  ; 0               ; 0               ; 0               ; 0               ; 0                ; 1               ; 1               ;
+; cmd_reg.resp.R1b ; 0               ; 0               ; 0               ; 0               ; 1                ; 0               ; 1               ;
+; cmd_reg.resp.R2  ; 0               ; 0               ; 0               ; 1               ; 0                ; 0               ; 1               ;
+; cmd_reg.resp.R3  ; 0               ; 0               ; 1               ; 0               ; 0                ; 0               ; 1               ;
+; cmd_reg.resp.R6  ; 0               ; 1               ; 0               ; 0               ; 0                ; 0               ; 1               ;
+; cmd_reg.resp.R7  ; 1               ; 0               ; 0               ; 0               ; 0                ; 0               ; 1               ;
++------------------+-----------------+-----------------+-----------------+-----------------+------------------+-----------------+-----------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|resp.resp                                            ;
++--------------------+-------------------+-------------------+-------------------+-------------------+--------------------+-------------------+-------------------+
+; Name               ; resp.resp.R7~reg0 ; resp.resp.R6~reg0 ; resp.resp.R3~reg0 ; resp.resp.R2~reg0 ; resp.resp.R1b~reg0 ; resp.resp.R1~reg0 ; resp.resp.R0~reg0 ;
++--------------------+-------------------+-------------------+-------------------+-------------------+--------------------+-------------------+-------------------+
+; resp.resp.R0~reg0  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                  ; 0                 ; 0                 ;
+; resp.resp.R1~reg0  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                  ; 1                 ; 1                 ;
+; resp.resp.R1b~reg0 ; 0                 ; 0                 ; 0                 ; 0                 ; 1                  ; 0                 ; 1                 ;
+; resp.resp.R2~reg0  ; 0                 ; 0                 ; 0                 ; 1                 ; 0                  ; 0                 ; 1                 ;
+; resp.resp.R3~reg0  ; 0                 ; 0                 ; 1                 ; 0                 ; 0                  ; 0                 ; 1                 ;
+; resp.resp.R6~reg0  ; 0                 ; 1                 ; 0                 ; 0                 ; 0                  ; 0                 ; 1                 ;
+; resp.resp.R7~reg0  ; 1                 ; 0                 ; 0                 ; 0                 ; 0                  ; 0                 ; 1                 ;
++--------------------+-------------------+-------------------+-------------------+-------------------+--------------------+-------------------+-------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|state                                                                                                                                               ;
++-------------------+------------------+-------------------+-------------------+------------------+-----------------+-----------------+-------------------+------------------+-----------------+----------------+------------------+--------------+--------------+
+; Name              ; state.s_resp_fin ; state.s_resp_busy ; state.s_resp_stop ; state.s_resp_crc ; state.s_resp_rd ; state.s_resp_su ; state.s_resp_init ; state.s_cmd_stop ; state.s_cmd_crc ; state.s_cmd_wr ; state.s_cmd_init ; state.s_idle ; state.s_init ;
++-------------------+------------------+-------------------+-------------------+------------------+-----------------+-----------------+-------------------+------------------+-----------------+----------------+------------------+--------------+--------------+
+; state.s_init      ; 0                ; 0                 ; 0                 ; 0                ; 0               ; 0               ; 0                 ; 0                ; 0               ; 0              ; 0                ; 0            ; 0            ;
+; state.s_idle      ; 0                ; 0                 ; 0                 ; 0                ; 0               ; 0               ; 0                 ; 0                ; 0               ; 0              ; 0                ; 1            ; 1            ;
+; state.s_cmd_init  ; 0                ; 0                 ; 0                 ; 0                ; 0               ; 0               ; 0                 ; 0                ; 0               ; 0              ; 1                ; 0            ; 1            ;
+; state.s_cmd_wr    ; 0                ; 0                 ; 0                 ; 0                ; 0               ; 0               ; 0                 ; 0                ; 0               ; 1              ; 0                ; 0            ; 1            ;
+; state.s_cmd_crc   ; 0                ; 0                 ; 0                 ; 0                ; 0               ; 0               ; 0                 ; 0                ; 1               ; 0              ; 0                ; 0            ; 1            ;
+; state.s_cmd_stop  ; 0                ; 0                 ; 0                 ; 0                ; 0               ; 0               ; 0                 ; 1                ; 0               ; 0              ; 0                ; 0            ; 1            ;
+; state.s_resp_init ; 0                ; 0                 ; 0                 ; 0                ; 0               ; 0               ; 1                 ; 0                ; 0               ; 0              ; 0                ; 0            ; 1            ;
+; state.s_resp_su   ; 0                ; 0                 ; 0                 ; 0                ; 0               ; 1               ; 0                 ; 0                ; 0               ; 0              ; 0                ; 0            ; 1            ;
+; state.s_resp_rd   ; 0                ; 0                 ; 0                 ; 0                ; 1               ; 0               ; 0                 ; 0                ; 0               ; 0              ; 0                ; 0            ; 1            ;
+; state.s_resp_crc  ; 0                ; 0                 ; 0                 ; 1                ; 0               ; 0               ; 0                 ; 0                ; 0               ; 0              ; 0                ; 0            ; 1            ;
+; state.s_resp_stop ; 0                ; 0                 ; 1                 ; 0                ; 0               ; 0               ; 0                 ; 0                ; 0               ; 0              ; 0                ; 0            ; 1            ;
+; state.s_resp_busy ; 0                ; 1                 ; 0                 ; 0                ; 0               ; 0               ; 0                 ; 0                ; 0               ; 0              ; 0                ; 0            ; 1            ;
+; state.s_resp_fin  ; 1                ; 0                 ; 0                 ; 0                ; 0               ; 0               ; 0                 ; 0                ; 0               ; 0              ; 0                ; 0            ; 1            ;
++-------------------+------------------+-------------------+-------------------+------------------+-----------------+-----------------+-------------------+------------------+-----------------+----------------+------------------+--------------+--------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                              ;
++--------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+; Register name                                                                                          ; Reason for Removal                                                     ;
++--------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|status_width[9]                                    ; Stuck at VCC due to stuck port data_in                                 ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|status_width[0..8]                                 ; Stuck at GND due to stuck port data_in                                 ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|resp_stat[3]       ; Stuck at GND due to stuck port data_in                                 ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|fg1[2,3]                                           ; Merged with simple_sd:u_simple_sd|sd_controller:u_sd_controller|fg1[1] ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|sw_mode                                            ; Merged with simple_sd:u_simple_sd|sd_controller:u_sd_controller|fg1[0] ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|fg1[1]                                             ; Stuck at GND due to stuck port data_in                                 ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|bus_width[0]                                       ; Stuck at GND due to stuck port data_in                                 ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_state_dly.s_idle                               ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_state_dly.s_cmd                                ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_state_dly.s_cmd_wait                           ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_state_dly.s_acmd                               ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_state_dly.s_acmd_wait                          ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|unit_state_dly.s_init                              ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|unit_state_dly.s_transfer                          ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|unit_state_dly.s_error                             ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|unit_state_dly.s_read_single                       ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|unit_state_dly.s_read_multiple                     ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|\p_sd_controller:prev_cmd_type.s_idle              ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|\p_sd_controller:prev_cmd_type.s_cmd               ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|\p_sd_controller:prev_cmd_type.s_cmd_wait          ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|\p_sd_controller:prev_cmd_type.s_acmd              ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|\p_sd_controller:prev_cmd_type.s_acmd_wait         ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|\p_sd_controller:prev_unit_state.s_init            ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|\p_sd_controller:prev_unit_state.s_transfer        ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|\p_sd_controller:prev_unit_state.s_error           ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|\p_sd_controller:prev_unit_state.s_read_single     ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|\p_sd_controller:prev_unit_state.s_read_multiple   ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|resp.resp.R0~reg0  ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|resp.resp.R1~reg0  ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|resp.resp.R1b~reg0 ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|resp.resp.R2~reg0  ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|resp.resp.R3~reg0  ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|resp.resp.R6~reg0  ; Lost fanout                                                            ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|resp.resp.R7~reg0  ; Lost fanout                                                            ;
+; Total Number of Removed Registers = 43                                                                 ;                                                                        ;
++--------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 666   ;
+; Number of registers using Synchronous Clear  ; 64    ;
+; Number of registers using Synchronous Load   ; 53    ;
+; Number of registers using Asynchronous Clear ; 666   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 535   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------------------------------------------------------+
+; Inverted Register Statistics                                                  ;
++---------------------------------------------------------------------+---------+
+; Inverted Register                                                   ; Fan out ;
++---------------------------------------------------------------------+---------+
+; valid                                                               ; 2       ;
+; simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_reg.resp.R0 ; 2       ;
+; Total number of inverted registers = 2                              ;         ;
++---------------------------------------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 52 bits   ; 104 LEs       ; 52 LEs               ; 52 LEs                 ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:0:crc16_dat_i|reg[7]  ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:u_cmd_crc7|reg[4]            ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:0:crc16_dat_i|reg[0]  ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:1:crc16_dat_i|reg[12] ;
+; 3:1                ; 37 bits   ; 74 LEs        ; 37 LEs               ; 37 LEs                 ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|cmd_shift[17]                    ;
+; 4:1                ; 133 bits  ; 266 LEs       ; 133 LEs              ; 133 LEs                ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|resp_shift[72]                   ;
+; 9:1                ; 26 bits   ; 156 LEs       ; 26 LEs               ; 130 LEs                ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|dat_cnt[25]                      ;
+; 15:1               ; 26 bits   ; 260 LEs       ; 52 LEs               ; 208 LEs                ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|cnt[7]                           ;
+; 17:1               ; 2 bits    ; 22 LEs        ; 8 LEs                ; 14 LEs                 ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_reg.index[2]                                                 ;
+; 17:1               ; 3 bits    ; 33 LEs        ; 21 LEs               ; 12 LEs                 ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_reg.resp.R1                                                  ;
+; 17:1               ; 3 bits    ; 33 LEs        ; 18 LEs               ; 15 LEs                 ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_reg.resp.R3                                                  ;
+; 17:1               ; 2 bits    ; 22 LEs        ; 12 LEs               ; 10 LEs                 ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_reg.index[1]                                                 ;
+; 18:1               ; 5 bits    ; 60 LEs        ; 40 LEs               ; 20 LEs                 ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_reg.arg[4]                                                   ;
+; 18:1               ; 2 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_reg.arg[2]                                                   ;
+; 18:1               ; 2 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_reg.arg[0]                                                   ;
+; 18:1               ; 7 bits    ; 84 LEs        ; 21 LEs               ; 63 LEs                 ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_reg.arg[10]                                                  ;
+; 18:1               ; 13 bits   ; 156 LEs       ; 52 LEs               ; 104 LEs                ; Yes        ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_reg.arg[24]                                                  ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|dat_state_dly                    ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|dat_block_read                   ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|Selector54                                                       ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |sd_v3|simple_sd:u_simple_sd|Selector3                                                                                      ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; No         ; |sd_v3|simple_sd:u_simple_sd|Selector2                                                                                      ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|read_status_state                                                ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; No         ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|read_multiple_state                                              ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|Selector47                                                       ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|cmd_state                                                        ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|read_single_state                                                ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|unit_state                                                       ;
+; 13:1               ; 4 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; No         ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|dat_state                        ;
+; 18:1               ; 5 bits    ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; No         ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|init_state                                                       ;
+; 25:1               ; 5 bits    ; 80 LEs        ; 35 LEs               ; 45 LEs                 ; No         ; |sd_v3|simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|state                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: reset_unit:power_on_reset ;
++----------------+---------+---------------------------------------------+
+; Parameter Name ; Value   ; Type                                        ;
++----------------+---------+---------------------------------------------+
+; n              ; 5000000 ; Signed Integer                              ;
++----------------+---------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debounce:\debounce_pbs:0:debounce_pbs_i ;
++----------------+-------+-------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                        ;
++----------------+-------+-------------------------------------------------------------+
+; n              ; 50000 ; Signed Integer                                              ;
++----------------+-------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debounce:\debounce_pbs:1:debounce_pbs_i ;
++----------------+-------+-------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                        ;
++----------------+-------+-------------------------------------------------------------+
+; n              ; 50000 ; Signed Integer                                              ;
++----------------+-------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debounce:\debounce_pbs:2:debounce_pbs_i ;
++----------------+-------+-------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                        ;
++----------------+-------+-------------------------------------------------------------+
+; n              ; 50000 ; Signed Integer                                              ;
++----------------+-------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debounce:\debounce_pbs:3:debounce_pbs_i ;
++----------------+-------+-------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                        ;
++----------------+-------+-------------------------------------------------------------+
+; n              ; 50000 ; Signed Integer                                              ;
++----------------+-------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:u_cmd_crc7 ;
++----------------+---------+----------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value   ; Type                                                                                                                 ;
++----------------+---------+----------------------------------------------------------------------------------------------------------------------+
+; length         ; 7       ; Signed Integer                                                                                                       ;
+; polynomial     ; 0001001 ; Unsigned Binary                                                                                                      ;
++----------------+---------+----------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:0:crc16_dat_i ;
++----------------+------------------+-----------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value            ; Type                                                                                                                  ;
++----------------+------------------+-----------------------------------------------------------------------------------------------------------------------+
+; length         ; 16               ; Signed Integer                                                                                                        ;
+; polynomial     ; 0001000000100001 ; Unsigned Binary                                                                                                       ;
++----------------+------------------+-----------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:1:crc16_dat_i ;
++----------------+------------------+-----------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value            ; Type                                                                                                                  ;
++----------------+------------------+-----------------------------------------------------------------------------------------------------------------------+
+; length         ; 16               ; Signed Integer                                                                                                        ;
+; polynomial     ; 0001000000100001 ; Unsigned Binary                                                                                                       ;
++----------------+------------------+-----------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:2:crc16_dat_i ;
++----------------+------------------+-----------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value            ; Type                                                                                                                  ;
++----------------+------------------+-----------------------------------------------------------------------------------------------------------------------+
+; length         ; 16               ; Signed Integer                                                                                                        ;
+; polynomial     ; 0001000000100001 ; Unsigned Binary                                                                                                       ;
++----------------+------------------+-----------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:3:crc16_dat_i ;
++----------------+------------------+-----------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value            ; Type                                                                                                                  ;
++----------------+------------------+-----------------------------------------------------------------------------------------------------------------------+
+; length         ; 16               ; Signed Integer                                                                                                        ;
+; polynomial     ; 0001000000100001 ; Unsigned Binary                                                                                                       ;
++----------------+------------------+-----------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|prescaler:u_clk_en_init2 ;
++----------------+-------+----------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------------------------------------------------------+
+; divisor        ; 62    ; Signed Integer                                                                                                                   ;
+; phase          ; 0     ; Signed Integer                                                                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|prescaler:u_clk_en_init ;
++----------------+-------+---------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                                            ;
++----------------+-------+---------------------------------------------------------------------------------------------------------------------------------+
+; divisor        ; 2     ; Signed Integer                                                                                                                  ;
+; phase          ; 0     ; Signed Integer                                                                                                                  ;
++----------------+-------+---------------------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: simple_sd:u_simple_sd|debounce:cd_debounce ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; n              ; 50000 ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: count_bin:add_count ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; bits           ; 32    ; Signed Integer                          ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------+
+; Port Connectivity Checks: "count_bin:add_count" ;
++--------+-------+----------+---------------------+
+; Port   ; Type  ; Severity ; Details             ;
++--------+-------+----------+---------------------+
+; clk_en ; Input ; Info     ; Stuck at VCC        ;
+; zero   ; Input ; Info     ; Stuck at GND        ;
+; down   ; Input ; Info     ; Stuck at GND        ;
++--------+-------+----------+---------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "simple_sd:u_simple_sd|debounce:cd_debounce"                                              ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; clk_en    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; debounced ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|prescaler:u_clk_en_init2" ;
++----------+-------+----------+------------------------------------------------------------------------------------------------------------+
+; Port     ; Type  ; Severity ; Details                                                                                                    ;
++----------+-------+----------+------------------------------------------------------------------------------------------------------------+
+; i_clk_en ; Input ; Info     ; Stuck at VCC                                                                                               ;
++----------+-------+----------+------------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver"           ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; resp.index      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; resp.arg[15..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; resp.resp       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; csd             ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "simple_sd:u_simple_sd|sd_controller:u_sd_controller"                                           ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; error_policy    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; error_policy_fb ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; cmd_o           ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; resp_stat_o     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; dat_stat_o      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "simple_sd:u_simple_sd"                                                                             ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                ; Type   ; Severity ; Details                                                                             ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+; sleep               ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ctrl_tick.reinit    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; fb_tick             ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; dat_block[511..1]   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; unit_stat.s_init    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; unit_stat.s_read    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; unit_stat.s_error   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; unit_stat.s_no_card ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "debounce:\debounce_pbs:3:debounce_pbs_i"                                                 ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; clk_en    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; debounced ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "debounce:\debounce_pbs:2:debounce_pbs_i"                                                 ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; clk_en    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; debounced ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "debounce:\debounce_pbs:1:debounce_pbs_i"                                                 ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; clk_en    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; debounced ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "debounce:\debounce_pbs:0:debounce_pbs_i"                                                 ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; clk_en    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; tick      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; debounced ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 39                          ;
+; cycloneiii_ff         ; 666                         ;
+;     CLR               ; 127                         ;
+;     CLR SCLR          ; 4                           ;
+;     ENA CLR           ; 447                         ;
+;     ENA CLR SCLR      ; 35                          ;
+;     ENA CLR SCLR SLD  ; 25                          ;
+;     ENA CLR SLD       ; 28                          ;
+; cycloneiii_io_obuf    ; 5                           ;
+; cycloneiii_lcell_comb ; 1104                        ;
+;     arith             ; 174                         ;
+;         2 data inputs ; 173                         ;
+;         3 data inputs ; 1                           ;
+;     normal            ; 930                         ;
+;         1 data inputs ; 13                          ;
+;         2 data inputs ; 150                         ;
+;         3 data inputs ; 254                         ;
+;         4 data inputs ; 513                         ;
+;                       ;                             ;
+; Max LUT depth         ; 9.00                        ;
+; Average LUT depth     ; 3.07                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:02     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+    Info: Copyright (C) 2017  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and its AMPP partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel MegaCore Function License Agreement, or other 
+    Info: applicable license agreement, including, without limitation, 
+    Info: that your use is for the sole purpose of programming logic 
+    Info: devices manufactured by Intel and sold by Intel or its 
+    Info: authorized distributors.  Please refer to the applicable 
+    Info: agreement for further details.
+    Info: Processing started: Fri Aug 11 11:01:28 2017
+Info: Command: quartus_map sd_v3
+Info (125069): Default assignment values were changed in the current version of the Quartus Prime software -- changes to default assignments values are contained in file /opt/intelFPGA_lite/17.0/quartus/linux64/assignment_defaults.qdf
+Info (20032): Parallel compilation is enabled and will use up to 4 processors
+Info (12021): Found 2 design units, including 1 entities, in source file source/sd_v3.vhd
+    Info (12022): Found design unit 1: sd_v3-sd_v3_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd Line: 84
+    Info (12023): Found entity 1: sd_v3 File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd Line: 56
+Info (12021): Found 1 design units, including 0 entities, in source file source/de0_nano/de0_nano_const_pkg.vhd
+    Info (12022): Found design unit 1: de0_nano_const_pkg File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/de0_nano/de0_nano_const_pkg.vhd Line: 32
+Info (12021): Found 2 design units, including 1 entities, in source file source/vhdl_lib/count_bin.vhd
+    Info (12022): Found design unit 1: count_bin-count_bin_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/count_bin.vhd Line: 59
+    Info (12023): Found entity 1: count_bin File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/count_bin.vhd Line: 41
+Info (12021): Found 2 design units, including 1 entities, in source file source/vhdl_lib/count_int.vhd
+    Info (12022): Found design unit 1: count_int-count_int_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/count_int.vhd Line: 65
+    Info (12023): Found entity 1: count_int File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/count_int.vhd Line: 43
+Info (12021): Found 2 design units, including 1 entities, in source file source/vhdl_lib/debounce.vhd
+    Info (12022): Found design unit 1: debounce-debounce_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/debounce.vhd Line: 56
+    Info (12023): Found entity 1: debounce File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/debounce.vhd Line: 43
+Info (12021): Found 2 design units, including 1 entities, in source file source/vhdl_lib/ff_rs.vhd
+    Info (12022): Found design unit 1: ff_rs-ff_rs_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/ff_rs.vhd Line: 53
+    Info (12023): Found entity 1: ff_rs File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/ff_rs.vhd Line: 39
+Info (12021): Found 2 design units, including 1 entities, in source file source/vhdl_lib/one_shot.vhd
+    Info (12022): Found design unit 1: one_shot-one_shot_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/one_shot.vhd Line: 45
+    Info (12023): Found entity 1: one_shot File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/one_shot.vhd Line: 36
+Info (12021): Found 2 design units, including 1 entities, in source file source/vhdl_lib/prescaler.vhd
+    Info (12022): Found design unit 1: prescaler-prescaler_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/prescaler.vhd Line: 53
+    Info (12023): Found entity 1: prescaler File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/prescaler.vhd Line: 38
+Info (12021): Found 2 design units, including 1 entities, in source file source/vhdl_lib/pwm_unit.vhd
+    Info (12022): Found design unit 1: pwm_unit-pwm_unit_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/pwm_unit.vhd Line: 51
+    Info (12023): Found entity 1: pwm_unit File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/pwm_unit.vhd Line: 37
+Info (12021): Found 2 design units, including 1 entities, in source file source/vhdl_lib/reset_unit.vhd
+    Info (12022): Found design unit 1: reset_unit-reset_unit_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/reset_unit.vhd Line: 48
+    Info (12023): Found entity 1: reset_unit File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/reset_unit.vhd Line: 39
+Info (12021): Found 2 design units, including 1 entities, in source file source/vhdl_lib/rotary.vhd
+    Info (12022): Found design unit 1: rotary-rotary_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/rotary.vhd Line: 57
+    Info (12023): Found entity 1: rotary File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/rotary.vhd Line: 43
+Info (12021): Found 2 design units, including 1 entities, in source file source/vhdl_lib/sweep_unit.vhd
+    Info (12022): Found design unit 1: sweep_unit-sweep_unit_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/sweep_unit.vhd Line: 49
+    Info (12023): Found entity 1: sweep_unit File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/sweep_unit.vhd Line: 39
+Info (12021): Found 2 design units, including 1 entities, in source file source/vhdl_lib/tick_extend.vhd
+    Info (12022): Found design unit 1: tick_extend-tick_extend_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/tick_extend.vhd Line: 51
+    Info (12023): Found entity 1: tick_extend File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/tick_extend.vhd Line: 37
+Info (12021): Found 2 design units, including 1 entities, in source file source/vhdl_lib/toggle_unit.vhd
+    Info (12022): Found design unit 1: toggle_unit-toggle_unit_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/toggle_unit.vhd Line: 46
+    Info (12023): Found entity 1: toggle_unit File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/toggle_unit.vhd Line: 37
+Info (12021): Found 1 design units, including 0 entities, in source file source/vhdl_lib/vhdl_lib_pkg.vhd
+    Info (12022): Found design unit 1: vhdl_lib_pkg File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/vhdl_lib_pkg.vhd Line: 37
+Info (12021): Found 2 design units, including 1 entities, in source file source/sd/crc.vhd
+    Info (12022): Found design unit 1: crc-crc_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/crc.vhd Line: 76
+    Info (12023): Found entity 1: crc File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/crc.vhd Line: 55
+Info (12021): Found 1 design units, including 0 entities, in source file source/sd/sd_const_pkg.vhd
+    Info (12022): Found design unit 1: sd_const_pkg File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_const_pkg.vhd Line: 37
+Info (12021): Found 2 design units, including 1 entities, in source file source/sd/sd_controller.vhd
+    Info (12022): Found design unit 1: sd_controller-sd_controller_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_controller.vhd Line: 260
+    Info (12023): Found entity 1: sd_controller File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_controller.vhd Line: 211
+Info (12021): Found 1 design units, including 0 entities, in source file source/sd/sd_pkg.vhd
+    Info (12022): Found design unit 1: sd_pkg File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_pkg.vhd Line: 38
+Info (12021): Found 2 design units, including 1 entities, in source file source/sd/sd_transceiver.vhd
+    Info (12022): Found design unit 1: sd_transceiver-sd_transceiver_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_transceiver.vhd Line: 250
+    Info (12023): Found entity 1: sd_transceiver File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_transceiver.vhd Line: 201
+Info (12021): Found 2 design units, including 1 entities, in source file source/sd/simple_sd.vhd
+    Info (12022): Found design unit 1: simple_sd-simple_sd_a File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/simple_sd.vhd Line: 144
+    Info (12023): Found entity 1: simple_sd File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/simple_sd.vhd Line: 105
+Info (12127): Elaborating entity "sd_v3" for the top level hierarchy
+Warning (10540): VHDL Signal Declaration warning at sd_v3.vhd(89): used explicit default value for signal "sleep" because signal was never assigned a value File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd Line: 89
+Warning (10036): Verilog HDL or VHDL warning at sd_v3.vhd(92): object "fb_tick" assigned a value but never read File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd Line: 92
+Warning (10873): Using initial value X (don't care) for net "ctrl_tick.reinit" at sd_v3.vhd(92) File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd Line: 92
+Info (12128): Elaborating entity "reset_unit" for hierarchy "reset_unit:power_on_reset" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd Line: 103
+Info (12128): Elaborating entity "debounce" for hierarchy "debounce:\debounce_pbs:0:debounce_pbs_i" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd Line: 106
+Warning (10492): VHDL Process Statement warning at debounce.vhd(74): signal "last" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/debounce.vhd Line: 74
+Info (12128): Elaborating entity "simple_sd" for hierarchy "simple_sd:u_simple_sd" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd Line: 110
+Info (12128): Elaborating entity "sd_controller" for hierarchy "simple_sd:u_simple_sd|sd_controller:u_sd_controller" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/simple_sd.vhd Line: 160
+Warning (10036): Verilog HDL or VHDL warning at sd_controller.vhd(265): object "unit_state_dly" assigned a value but never read File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_controller.vhd Line: 265
+Warning (10036): Verilog HDL or VHDL warning at sd_controller.vhd(295): object "csd" assigned a value but never read File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_controller.vhd Line: 295
+Warning (10492): VHDL Process Statement warning at sd_controller.vhd(494): signal "cmd0" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_controller.vhd Line: 494
+Info (10018): Can't recognize finite state machine "cmd_reg.resp" because it has a complex reset state
+Info (12128): Elaborating entity "sd_transceiver" for hierarchy "simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_controller.vhd Line: 382
+Info (12128): Elaborating entity "crc" for hierarchy "simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:u_cmd_crc7" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_transceiver.vhd Line: 318
+Info (12128): Elaborating entity "crc" for hierarchy "simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|crc:\crc16:0:crc16_dat_i" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_transceiver.vhd Line: 323
+Info (12128): Elaborating entity "prescaler" for hierarchy "simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|prescaler:u_clk_en_init2" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_transceiver.vhd Line: 331
+Warning (10492): VHDL Process Statement warning at prescaler.vhd(68): signal "i_clk_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/prescaler.vhd Line: 68
+Info (12128): Elaborating entity "prescaler" for hierarchy "simple_sd:u_simple_sd|sd_controller:u_sd_controller|sd_transceiver:u_sd_transceiver|prescaler:u_clk_en_init" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/sd_transceiver.vhd Line: 332
+Warning (10492): VHDL Process Statement warning at prescaler.vhd(68): signal "i_clk_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/prescaler.vhd Line: 68
+Info (12128): Elaborating entity "tick_extend" for hierarchy "simple_sd:u_simple_sd|tick_extend:ctrl_tick_extend_1" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/simple_sd.vhd Line: 218
+Info (12128): Elaborating entity "one_shot" for hierarchy "simple_sd:u_simple_sd|one_shot:fb_one_shot_1" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd/simple_sd.vhd Line: 223
+Info (12128): Elaborating entity "count_bin" for hierarchy "count_bin:add_count" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd Line: 114
+Info (13000): Registers with preset signals will power-up high File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd Line: 135
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13004): Presettable and clearable registers converted to equivalent circuits with latches. Registers power-up to an undefined state, and DEVCLRn places the registers in an undefined state.
+    Warning (13310): Register "simple_sd:u_simple_sd|debounce:cd_debounce|last" is converted into an equivalent circuit using register "simple_sd:u_simple_sd|debounce:cd_debounce|last~_emulated" and latch "simple_sd:u_simple_sd|debounce:cd_debounce|last~1" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/debounce.vhd Line: 74
+    Warning (13310): Register "debounce:\debounce_pbs:2:debounce_pbs_i|last" is converted into an equivalent circuit using register "debounce:\debounce_pbs:2:debounce_pbs_i|last~_emulated" and latch "debounce:\debounce_pbs:2:debounce_pbs_i|last~1" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/debounce.vhd Line: 74
+    Warning (13310): Register "debounce:\debounce_pbs:1:debounce_pbs_i|last" is converted into an equivalent circuit using register "debounce:\debounce_pbs:1:debounce_pbs_i|last~_emulated" and latch "debounce:\debounce_pbs:1:debounce_pbs_i|last~1" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/debounce.vhd Line: 74
+    Warning (13310): Register "debounce:\debounce_pbs:3:debounce_pbs_i|last" is converted into an equivalent circuit using register "debounce:\debounce_pbs:3:debounce_pbs_i|last~_emulated" and latch "debounce:\debounce_pbs:3:debounce_pbs_i|last~1" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/vhdl_lib/debounce.vhd Line: 74
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 27 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 5 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "sd_wp" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd Line: 66
+    Warning (15610): No output dependent on input pin "key[0]" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd Line: 75
+    Warning (15610): No output dependent on input pin "key[1]" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd Line: 75
+    Warning (15610): No output dependent on input pin "sw[2]" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd Line: 76
+    Warning (15610): No output dependent on input pin "sw[3]" File: /data/projects/hologram/SD-Framebuffer/vhdl/sd_v3/source/sd_v3.vhd Line: 76
+Info (21057): Implemented 1181 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 13 input pins
+    Info (21059): Implemented 21 output pins
+    Info (21060): Implemented 5 bidirectional pins
+    Info (21061): Implemented 1142 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 20 warnings
+    Info: Peak virtual memory: 1069 megabytes
+    Info: Processing ended: Fri Aug 11 11:01:47 2017
+    Info: Elapsed time: 00:00:19
+    Info: Total CPU time (on all processors): 00:00:37
+
+
